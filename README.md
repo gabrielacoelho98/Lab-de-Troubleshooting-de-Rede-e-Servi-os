@@ -1,253 +1,149 @@
-# Lab de Troubleshooting de Rede e Serviços
-Este laboratório simula cenários reais de suporte técnico em ambientes Windows e Linux, abordando problemas comuns relacionados a:
+# 🌐 Lab de Troubleshooting de Rede e Serviços
 
-Conectividade de rede
-Serviços (Apache)
-DNS
-Firewall
-
-O objetivo é diagnosticar e resolver falhas utilizando ferramentas de troubleshooting.
+Projeto prático de troubleshooting voltado à simulação de falhas comuns em ambientes de suporte técnico, abordando diagnóstico e resolução de problemas relacionados a conectividade de rede, serviços web, DNS e firewall em sistemas Windows e Linux.
 
 ---
 
-🖥️ Preparação do Ambiente
+## 🎯 Objetivo
 
-🔧 Configuração da Rede no VirtualBox
-
-Ambas as máquinas configuradas com:
-
-Adaptador 1: NAT
-
-Adaptador 2: Rede Interna (lab-network)
-
-![linux inicial](img/02-print-rede-virtualbox-linux.png)
-
-![linux inicial](img/01-print-rede-virtualbox-win.png)
+Simular cenários reais de falhas operacionais encontradas em rotinas de suporte técnico e infraestrutura, aplicando procedimentos de diagnóstico e correção de problemas em serviços e conectividade.
 
 ---
 
-🐧 Configuração do Linux (Servidor)
+## 🛠️ Tecnologias Utilizadas
 
-ip a
-
-sudo ip addr add 192.168.10.20/24 dev enp0s8
-
-sudo ip link set enp0s8 up
-
-![linux ip](img/03-print-ip-linux.png)
-
----
-
-🪟 Configuração do Windows (Cliente)
-
-ipconfig
-
-![windows ip](img/04-print-ip-windows.png)
+- Oracle VirtualBox  
+- Windows  
+- Ubuntu Linux  
+- Apache2  
+- UFW Firewall  
+- Ferramentas nativas de diagnóstico de rede  
 
 ---
 
-🔎 Teste de Conectividade
+## 🌐 Estrutura do Ambiente
 
-ping 192.168.10.20
+O laboratório foi desenvolvido com duas máquinas virtuais interligadas por rede interna para simulação de comunicação cliente-servidor.
 
-✔ Comunicação funcionando
-
-![ping ok](img/05-print-ping-ok.png)
-
----
-
-💣 CENÁRIO 1 — Serviço Web Inativo
-
- Situação inicial (serviço funcionando)
-
- systemctl status apache2
-
-![apache rodando](img/06-print-apache-rodando.png)
+- **Cliente:** Windows  
+- **Servidor:** Ubuntu Linux  
+- **Rede Virtual:** `lab-network`  
+- **Serviço Web:** Apache2  
 
 ---
 
-🌐 Teste no navegador
+## ⚙️ Configuração do Ambiente
 
-✔ Site funcionando
+### Rede Virtual no VirtualBox
+- Adaptador 1: NAT  
+- Adaptador 2: Rede Interna (`lab-network`)  
 
-![site ok](img/07-print-site-ok.png)
+![Rede Linux](img/02-print-rede-virtualbox-linux.png)
 
----
-
-💣 Falha simulada
-
-sudo systemctl stop apache2
-
-![apache parado](img/08-print-apache-parado.png)
+![Rede Windows](img/01-print-rede-virtualbox-win.png)
 
 ---
 
-🌐 Teste após falha
-
-❌ Site fora do ar
-
-![apache parado](img/09-print-site-down.png)
+### Configuração do Servidor Linux
+![IP Linux](img/03-print-ip-linux.png)
 
 ---
 
-🔎 Teste de conectividade
-
-ping 192.168.10.20
-
-✔ Funciona
-
-![conectividade ping](img/10-print-ping-ok-servico-off.png)
+### Configuração do Cliente Windows
+![IP Windows](img/04-print-ip-windows.png)
 
 ---
 
-🔎 DIAGNÓSTICO
-
-Verificação da porta
-
-sudo ss -tuln
-
-![porta ](img/13-print-porta-80-fechada.png)
+### Teste Inicial de Conectividade
+![Ping Inicial](img/05-print-ping-ok.png)
 
 ---
 
-Verificação do serviço
+## 🔎 Cenários de Troubleshooting
 
-systemctl status apache2
+### 🖥️ Cenário 1 — Serviço Web Inativo
 
-![apache inativo](img/14-print-apache-inativo.png)
+Simulação de falha do serviço Apache para análise de indisponibilidade de aplicação.
 
----
+#### Serviço em Execução
+![Apache Rodando](img/06-print-apache-rodando.png)
 
-🧠 Diagnóstico
+#### Aplicação Disponível
+![Site Online](img/07-print-site-ok.png)
 
-A conectividade com o servidor estava funcional, porém o serviço web não estava em execução, impedindo o acesso ao sistema.
+#### Falha Simulada
+![Apache Parado](img/08-print-apache-parado.png)
 
----
+#### Aplicação Indisponível
+![Site Offline](img/09-print-site-down.png)
 
-🔧 Solução
+#### Validação de Conectividade
+![Ping Serviço Off](img/10-print-ping-ok-servico-off.png)
 
-sudo systemctl start apache2
+#### Diagnóstico de Porta
+![Porta 80 Fechada](img/13-print-porta-80-fechada.png)
 
----
+#### Status do Serviço
+![Apache Inativo](img/14-print-apache-inativo.png)
 
-✅ Resultado
+**Diagnóstico:**  
+A conectividade com o servidor permanecia funcional, porém o serviço Apache encontrava-se inativo, impedindo a entrega da aplicação web.
 
-![site restaurado](img/15-print-site-restaurado.png)
-
----
-
-
-🌐 CENÁRIO 2 — Falha de DNS
-
-📌 Problema
-
-Falha ao acessar sites por nome.
-
----
-
-🔎 DNS incorreto
-
-![dns incorreto](img/16-print-dns-errado.png)
+#### Resultado Após Correção
+![Site Restaurado](img/15-print-site-restaurado.png)
 
 ---
 
-Teste com domínio
+### 🌐 Cenário 2 — Falha de DNS
 
-ping google.com
+Simulação de erro de resolução de nomes causado por configuração incorreta de DNS.
 
-![ping falha](img/17-print-ping-google-falha.png)
+#### DNS Incorreto
+![DNS Errado](img/16-print-dns-errado.png)
 
----
+#### Falha de Resolução
+![Ping Google Falha](img/17-print-ping-google-falha.png)
 
-Teste com IP
+#### Teste via IP
+![Ping IP OK](img/18-print-ping-ip-ok.png)
 
-ping 8.8.8.8
+**Diagnóstico:**  
+A conectividade com a internet permanecia operacional, porém a resolução de nomes falhava devido à configuração incorreta do servidor DNS.
 
-![teste ip ](img/18-print-ping-ip-ok.png)
-
----
-
-🧠 Diagnóstico
-
-A conectividade com a internet estava funcional, porém a resolução de nomes falhava devido à configuração incorreta de DNS.
-
----
-
-🔧 Solução
-
-Configurar DNS correto:
-
-8.8.8.8
+#### Resultado Após Correção
+![DNS Corrigido](img/19-print-dns-corrigido.png)
 
 ---
 
-✅ Resultado
+### 🔥 Cenário 3 — Firewall Bloqueando Serviço
 
-![dns corrigido ](img/19-print-dns-corrigido.png)
+Simulação de indisponibilidade causada por regra de firewall bloqueando porta de serviço.
 
----
+#### Bloqueio Configurado
+![Firewall Bloqueio](img/20-print-firewall-bloqueio.png)
 
-🔥 CENÁRIO 3 — Firewall Bloqueando Serviço
+#### Ping Funcional
+![Ping Firewall](img/21-print-ping-ok-firewall.png)
 
-📌 Problema
+**Diagnóstico:**  
+O servidor permanecia acessível via rede, porém o firewall bloqueava a porta 80, impedindo acesso ao serviço web.
 
-Servidor responde ping, mas o sistema não abre.
-
----
-
-🔒 Bloqueio do firewall
-
-sudo ufw enable
-
-sudo ufw deny 80
-
-![bloqueio firewall ](img/20-print-firewall-bloqueio.png)
+#### Resultado Após Correção
+![Firewall Corrigido](img/22-print-firewall-corrigido.png)
 
 ---
 
-🔎 Teste de conectividade
+## 📚 Conhecimentos Aplicados
 
-ping 192.168.10.20
-
-![ping firewall ](img/21-print-ping-ok-firewall.png)
-
----
-
-🧠 Diagnóstico
-
-O firewall estava bloqueando o acesso à porta 80, impedindo o funcionamento do serviço web.
+- Troubleshooting de Serviços  
+- Diagnóstico de DNS  
+- Gerenciamento de Firewall  
+- Análise de Portas e Serviços  
+- Troubleshooting de Infraestrutura  
+- Diagnóstico de Rede Cliente/Servidor  
 
 ---
 
-🔧 Solução
+## 🚀 Resultado
 
-sudo ufw allow 80
-
----
-
-✅ Resultado
-
-![ping firewall ](img/22-print-firewall-corrigido.png)
-
----
-
-🏆 Conclusão
-
-Este laboratório permitiu simular e resolver problemas reais de:
-
-Serviços
-DNS
-Firewall
-Conectividade
-
-
-Desenvolvendo habilidades práticas essenciais para atuação em suporte técnico.
-
----
-
-👨‍💻 Autor
-
-Projeto desenvolvido para fins de estudo em redes, infraestrutura e suporte técnico.
-
-
-
+Ao final do laboratório foi possível identificar, diagnosticar e corrigir múltiplos cenários de falha relacionados a serviços, DNS, firewall e conectividade, reforçando conhecimentos práticos aplicáveis em rotinas de suporte técnico, help desk e infraestrutura de TI.
