@@ -2,6 +2,7 @@
 
 Projeto prático de troubleshooting voltado à simulação de falhas comuns em ambientes de suporte técnico, abordando diagnóstico e resolução de problemas relacionados a conectividade de rede, serviços web, DNS e firewall em sistemas Windows e Linux.
 
+
 ---
 
 ## 🎯 Objetivo
