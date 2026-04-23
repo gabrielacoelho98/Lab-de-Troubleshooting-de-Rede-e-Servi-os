@@ -1,17 +1,17 @@
-# 🌐 Lab de Troubleshooting de Rede e Serviços
+#  Lab de Troubleshooting de Rede e Serviços
 
 Projeto prático de troubleshooting voltado à simulação de falhas comuns em ambientes de suporte técnico, abordando diagnóstico e resolução de problemas relacionados a conectividade de rede, serviços web, DNS e firewall em sistemas Windows e Linux.
 
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 Simular cenários reais de falhas operacionais encontradas em rotinas de suporte técnico e infraestrutura, aplicando procedimentos de diagnóstico e correção de problemas em serviços e conectividade.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - Oracle VirtualBox  
 - Windows  
@@ -22,7 +22,7 @@ Simular cenários reais de falhas operacionais encontradas em rotinas de suporte
 
 ---
 
-## 🌐 Estrutura do Ambiente
+##  Estrutura do Ambiente
 
 O laboratório foi desenvolvido com duas máquinas virtuais interligadas por rede interna para simulação de comunicação cliente-servidor.
 
@@ -60,9 +60,9 @@ O laboratório foi desenvolvido com duas máquinas virtuais interligadas por red
 
 ---
 
-## 🔎 Cenários de Troubleshooting
+##  Cenários de Troubleshooting
 
-### 🖥️ Cenário 1 — Serviço Web Inativo
+###  Cenário 1 — Serviço Web Inativo
 
  Simulação de falha do serviço Apache para análise de indisponibilidade de aplicação.
 
