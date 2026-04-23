@@ -246,6 +246,8 @@ Ajuste na regra do firewall para permitir conexões na porta 80 (HTTP).
 #### Resultado Após Correção
 ![Firewall Corrigido](img/22-print-firewall-corrigido.png)
 
+Ao final do laboratório foi possível identificar, diagnosticar e corrigir múltiplos cenários de falha relacionados a serviços, DNS, firewall e conectividade, reforçando conhecimentos práticos aplicáveis em rotinas de suporte técnico, help desk e infraestrutura de TI.
+
 ---
 
 ##  Conhecimentos Aplicados
@@ -259,6 +261,4 @@ Ajuste na regra do firewall para permitir conexões na porta 80 (HTTP).
 
 
 
-##  Resultado
 
-Ao final do laboratório foi possível identificar, diagnosticar e corrigir múltiplos cenários de falha relacionados a serviços, DNS, firewall e conectividade, reforçando conhecimentos práticos aplicáveis em rotinas de suporte técnico, help desk e infraestrutura de TI.
