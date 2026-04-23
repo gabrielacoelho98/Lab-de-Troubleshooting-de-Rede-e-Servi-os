@@ -64,7 +64,11 @@ O laboratório foi desenvolvido com duas máquinas virtuais interligadas por red
 
 ### 🖥️ Cenário 1 — Serviço Web Inativo
 
-Simulação de falha do serviço Apache para análise de indisponibilidade de aplicação.
+ Simulação de falha do serviço Apache para análise de indisponibilidade de aplicação.
+
+### Situação Inicial
+
+ Serviço web em funcionamento e aplicação acessível via navegador.
 
 #### Serviço em Execução
 ![Apache Rodando](img/06-print-apache-rodando.png)
@@ -72,69 +76,179 @@ Simulação de falha do serviço Apache para análise de indisponibilidade de ap
 #### Aplicação Disponível
 ![Site Online](img/07-print-site-ok.png)
 
+---
+
 #### Falha Simulada
+
+O serviço Apache foi interrompido manualmente.
+
 ![Apache Parado](img/08-print-apache-parado.png)
 
-#### Aplicação Indisponível
+---
+
+### Sintomas Observados
+
+Aplicação indisponível no navegador
+
+Erro de acesso ao site
+
+
 ![Site Offline](img/09-print-site-down.png)
 
-#### Validação de Conectividade
+---
+
+#### Análise e Evidências
+
+Apesar da falha no acesso ao site:
+
+O servidor ainda respondia na rede
+Não havia perda de conectividade
+
 ![Ping Serviço Off](img/10-print-ping-ok-servico-off.png)
 
-#### Diagnóstico de Porta
+#### Verificação de porta:
 ![Porta 80 Fechada](img/13-print-porta-80-fechada.png)
 
 #### Status do Serviço
 ![Apache Inativo](img/14-print-apache-inativo.png)
 
-**Diagnóstico:**  
+---
+
+####  Diagnóstico:
 A conectividade com o servidor permanecia funcional, porém o serviço Apache encontrava-se inativo, impedindo a entrega da aplicação web.
+
+---
+
+#### Solução
+
+Reinicialização do serviço Apache no servidor.
 
 #### Resultado Após Correção
 ![Site Restaurado](img/15-print-site-restaurado.png)
 
 ---
 
-### 🌐 Cenário 2 — Falha de DNS
+###  Cenário 2 — Falha de DNS
 
 Simulação de erro de resolução de nomes causado por configuração incorreta de DNS.
+
+---
+### Situação Inicial
+
+Ambiente com conectividade ativa, porém com falha ao acessar serviços por nome de domínio.
+
+---
+### Falha Simulada
+
+Configuração manual de um servidor DNS inválido no cliente.
 
 #### DNS Incorreto
 ![DNS Errado](img/16-print-dns-errado.png)
 
-#### Falha de Resolução
+---
+### Sintomas Observados
+Falha ao realizar requisições por nome (ex: google.com) 
+
+Erro ao utilizar ping com domínio
+
+#### Ping Google Falha
 ![Ping Google Falha](img/17-print-ping-google-falha.png)
+
+---
+
+### Análise e Evidências
+
+Teste direto com IP:
+
+Comunicação com a internet funcionando
+
+Problema isolado na resolução de nomes
 
 #### Teste via IP
 ![Ping IP OK](img/18-print-ping-ip-ok.png)
 
-**Diagnóstico:**  
+---
+
+### Diagnóstico: 
 A conectividade com a internet permanecia operacional, porém a resolução de nomes falhava devido à configuração incorreta do servidor DNS.
 
+---
+
+### Solução
+
+Correção do endereço do servidor DNS para um DNS válido.
+
+---
+
 #### Resultado Após Correção
+
+A resolução de nomes foi restabelecida com sucesso.
+
 ![DNS Corrigido](img/19-print-dns-corrigido.png)
 
 ---
 
-### 🔥 Cenário 3 — Firewall Bloqueando Serviço
+###  Cenário 3 — Firewall Bloqueando Serviço
 
-Simulação de indisponibilidade causada por regra de firewall bloqueando porta de serviço.
+### Situação Inicial
+
+Servidor com serviço web ativo, porém com restrição de acesso configurada no firewall.
+
+---
+
+### Falha Simulada
+
+Aplicação de regra no firewall bloqueando a porta 80 (HTTP).
 
 #### Bloqueio Configurado
 ![Firewall Bloqueio](img/20-print-firewall-bloqueio.png)
 
-#### Ping Funcional
+---
+
+Sintomas Observados
+
+- Aplicação web indisponível no navegador
+
+- Falha ao acessar o serviço HTTP
+
+---
+
+### Análise e Evidências
+
+Teste de conectividade:
+
+- Servidor respondendo normalmente na rede
+
+- Comunicação via ping funcionando
+
+#### Ping Firewall
 ![Ping Firewall](img/21-print-ping-ok-firewall.png)
 
-**Diagnóstico:**  
+Interpretação:
+
+- Rede operacional
+
+- Serviço aparentemente ativo
+
+- Indício de bloqueio em camada de firewall
+
+### Diagnóstico: 
 O servidor permanecia acessível via rede, porém o firewall bloqueava a porta 80, impedindo acesso ao serviço web.
+
+---
+
+### Solução
+
+Ajuste na regra do firewall para permitir conexões na porta 80 (HTTP).
+
+---
 
 #### Resultado Após Correção
 ![Firewall Corrigido](img/22-print-firewall-corrigido.png)
 
 ---
 
-## 📚 Conhecimentos Aplicados
+##  Conhecimentos Aplicados
 
 - Troubleshooting de Serviços  
 - Diagnóstico de DNS  
@@ -143,7 +257,7 @@ O servidor permanecia acessível via rede, porém o firewall bloqueava a porta 8
 - Troubleshooting de Infraestrutura  
 - Diagnóstico de Rede Cliente/Servidor  
 
----
+
 
 ## 🚀 Resultado
 
